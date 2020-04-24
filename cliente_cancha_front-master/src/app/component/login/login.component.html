@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="login">
+        <header>
+            <div id="logo" align="center">
+                <img src="/assets/img/LOGO.png" />
+            </div>
+        </header>
+        <section>
+            <header>
+                Reserva tu cancha sintetica de fútbol, desde la comodidad de tu sillon
+            </header>
+            <article>
+                <form class="login-form" [formGroup]="formLogin" #formDir="ngForm" 
+                (ngSubmit)="registrar(formDir.value)">
+                    <mat-form-field class="full-width" floatLabel="never" appearance="outline">
+                        <mat-label>Usuario</mat-label>
+                        <input matInput placeholder="Usuario" formControlName="nickName" id="nickName" required>
+                        <mat-icon matPrefix>account_circle</mat-icon>
+                        <mat-error *ngIf="nickName.hasError('required')">
+                            Usuario <strong>requerido</strong>
+                          </mat-error>
+                    </mat-form-field>
+                    <mat-form-field floatLabel="never" class="full-width" appearance="outline">
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput type="password" placeholder="Contraseña" 
+                        formControlName="password" id="password" value="" required>
+                        <mat-icon matPrefix>vpn_key</mat-icon>
+                        <mat-error *ngIf="password.hasError('required')">
+                            Contraseña <strong>requerido</strong>
+                          </mat-error>
+                    </mat-form-field>
+                    <button class="full-width" type="submit"  [disabled]="formLogin.invalid" mat-raised-button color="accent">Ingreso</button>
+                    <a routerLink="/registro" class="btn btn-primary full-width" style="margin: 4px 0">Registro</a>
+                </form>
+            </article>
+        </section>
+    </div>
+</div>

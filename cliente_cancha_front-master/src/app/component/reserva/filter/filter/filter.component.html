@@ -1,0 +1,29 @@
+<article class="frm" *ngIf="reservaCompService.mostrarFiltro">
+    <form class="filter-form" [formGroup]="formFilter" #formDir="ngForm" (ngSubmit)="buscar(formDir.value)">
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Fecha Consulta</mat-label>
+            <input matInput (change)="changeDateFinal"  [max]="maxFechaReserva" [min]="minFechaReserva" [matDatepicker]="fchInPick" placeholder="Fecha Inicial" disabled
+                required formControlName="fechaConsultaIni" id="fechaConsultaIni">
+            <mat-datepicker-toggle matSuffix [for]="fchInPick"></mat-datepicker-toggle>
+            <mat-datepicker loca #fchInPick disabled="false" color="accent"></mat-datepicker>
+            <mat-error *ngIf="fechaConsultaIni.hasError('required')">
+                Fecha Inicial
+                <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Fecha Final</mat-label>
+            <input matInput [max]="maxSelectFecha" [min]="minSelectFecha" [matDatepicker]="fchEnPick" placeholder="Fecha Inicial"
+                disabled
+                required formControlName="fechaConsultaFin" id="fechaConsultaFin">
+            <mat-datepicker-toggle matSuffix [for]="fchEnPick"></mat-datepicker-toggle>
+            <mat-datepicker loca #fchEnPick disabled="false" color="accent"></mat-datepicker>
+            <mat-error *ngIf="fechaConsultaFin.hasError('required')">
+                Fecha Final
+                <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+        <button class="full-width" type="submit" [disabled]="formFilter.invalid" 
+        mat-raised-button color="accent">Buscar</button>
+    </form>
+</article>

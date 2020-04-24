@@ -1,0 +1,5 @@
+<div *ngIf="alertaService.mensajes.length">
+   <p *ngFor="let alerta of alertaService.mensajes">
+        <ngb-alert [type]="alerta.tipo" (close)="alertaService.close(alerta)">{{ alerta.descripcion }}</ngb-alert>
+    </p>
+</div>

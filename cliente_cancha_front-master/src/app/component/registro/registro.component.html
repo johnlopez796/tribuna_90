@@ -1,0 +1,100 @@
+<div class="container tmnReg">
+    <div class="login">
+        <!--header>
+                <div id="logo" align="center">
+                    <img src="/assets/img/LOGO.png" />
+                </div>
+            </header-->
+        <section>
+            <header>
+                Registro
+            </header>
+            <article>
+                <form class="user-form" [formGroup]="formUsr" #formDir="ngForm" 
+                (ngSubmit)="registrar(formDir.value)">
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Tipo Documento</mat-label>
+                        <mat-select formControlName="tipoDocumento" id="tipoDocumento" required>
+                            <mat-option>-- Seleccione --</mat-option>
+                            <mat-option value="CC">CC</mat-option>
+                            <mat-option value="TI">TI</mat-option>
+                        </mat-select>
+                          <mat-error *ngIf="tipoDocumento.hasError('required')">
+                            Tipo Documento <strong>requerido</strong>
+                          </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Documento</mat-label>
+                        <input matInput placeholder="Documento"  formControlName="documento" id="documento"
+                         required>
+                         <mat-error *ngIf="documento.hasError('required')">
+                            Documento <strong>requerido</strong>
+                          </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="full-width" appearance="outline" floatLebel>
+                        <mat-label>Nombres</mat-label>
+                        <input matInput placeholder="Nombres"  formControlName="nombres" id="nombres"
+                         required>
+                         <mat-error *ngIf="nombres.hasError('required')">
+                            Nombres <strong>requerido</strong>
+                          </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Apellidos</mat-label>
+                        <input matInput placeholder="Apellidos"  formControlName="apellidos" id="apellidos"
+                         required>
+                         <mat-error *ngIf="apellidos.hasError('required')">
+                            Apellidos <strong>requerido</strong>
+                          </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Fecha Nacimiento</mat-label>
+                        <input matInput [max]="maxNacimiento" [matDatepicker]="fnPicker" 
+                            placeholder="Fecha Nacimiento" 
+                            disabled required
+                            formControlName="fechaNacimiento" id="fechaNacimiento">
+                        <mat-datepicker-toggle matSuffix [for]="fnPicker"></mat-datepicker-toggle>
+                        <mat-datepicker loca #fnPicker disabled="false" color="accent"></mat-datepicker>
+                        <mat-error *ngIf="fechaNacimiento.hasError('required')">
+                            Fecha Nacimiento <strong>requerido</strong>
+                          </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input matInput placeholder="Email"  formControlName="email" id="email"
+                             required>
+                        </mat-form-field>
+                        <mat-error *ngIf="email.hasError('required')">
+                            Email <strong>requerido</strong>
+                          </mat-error>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Usuario</mat-label>
+                        <input matInput placeholder="Usuario"  formControlName="usuario" id="usuario"
+                         required>
+                         <mat-error *ngIf="usuario.hasError('required')">
+                            Usuario <strong>requerido</strong>
+                          </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput type="password" placeholder="password" value="" 
+                        formControlName="password" id="password" required>
+                        <mat-error *ngIf="password.hasError('required')">
+                            Contraseña <strong>requerido</strong>
+                          </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Repita Contraseña</mat-label>
+                        <input matInput type="password2" placeholder="password2" value="" 
+                        formControlName="password2" id="password2" required>
+                        <mat-error *ngIf="password2.hasError('required')">
+                            Repita Contraseña <strong>requerido</strong>
+                          </mat-error>
+                    </mat-form-field>
+                    <button class="full-width" mat-raised-button color="accent">Registrarse</button>
+                    <a routerLink="/login" class="btn btn-primary full-width" style="margin: 4px 0">Volver</a>
+                </form>
+            </article>
+        </section>
+    </div>
+</div>

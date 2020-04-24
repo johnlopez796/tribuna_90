@@ -1,0 +1,93 @@
+<main class="main-container">
+    <mat-toolbar style="margin: 0 0 0 0;" color="primary">
+        <button style="margin: 0 0 0 0;" color="accent" mat-icon-button (click)="drawer.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <img style="margin: 0 auto; width: 150px; height: 50px;" src="/assets/img/tribuna.png" />
+    </mat-toolbar>
+
+    <mat-sidenav-container color="primary" class="continer-side">
+        <mat-sidenav #drawer mode="side" style="min-width: 250px; background-color: rgba(229, 224, 241, 0.897);" fixedTopGap="56">
+            <div class="profileMenu">
+                <img src="/assets/img/user.png"/>
+                <ul>
+                    <li class="name">
+                        {{nombre}}
+                    </li>
+                    <li>
+                        {{edad}}
+                    </li>
+                    <li>
+                        {{nickname}}
+                    </li>
+                </ul>
+            </div>
+            <mat-nav-list>
+                <a mat-list-item [routerLink]="['/home', {outlets: {'main': ['reserva']}}]" >
+                    <mat-icon color="accent" matPrefix 
+                    >calendar_today</mat-icon>
+                    Reservas
+                </a>
+                <a mat-list-item routerLink=".">
+                    <mat-icon color="accent" matPrefix>account_box</mat-icon>
+                    Perfil
+                </a>
+                <br>
+                <a mat-list-item routerLink=".">
+                    <mat-icon matPrefix>bookmark</mat-icon>
+                    Mis canchas
+                </a>
+                <a mat-list-item routerLink=".">
+                    <mat-icon matPrefix>history</mat-icon>
+                    Historial
+                </a>
+                <br>
+                <a mat-list-item routerLink=".">
+                    <mat-icon color="warn" matPrefix>phone</mat-icon>
+                    Contactenos
+                </a>
+                <a mat-list-item routerLink=".">
+                    <mat-icon color="warn" matPrefix>exit_to_app</mat-icon>
+                    Cerrar Sesión
+                </a>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <div class="container">
+                <router-outlet name="main"></router-outlet>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/><br/>
+                <br/>
+                <br/>
+                <br/><br/>
+                <br/>
+                <br/>
+                <br/><br/>
+                <br/>
+                <br/>
+                <br/><br/>
+                <br/>
+                <br/>
+                <br/><br/>
+                <br/>
+                <br/>
+                <br/><br/>
+                <br/>
+                <br/>
+                <br/><br/>
+                <br/>
+                <br/>
+                <br/>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</main>
