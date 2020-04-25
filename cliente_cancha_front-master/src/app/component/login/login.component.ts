@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.alertaService.clear();
     this.formLogin = new FormGroup({
       'nickName':new FormControl('', [
         Validators.required,
@@ -42,6 +43,8 @@ export class LoginComponent implements OnInit {
 
      this.usuarioService.login(this.ingreso).subscribe(
        user => {
+        sessionStorage.setItem("userObject", JSON.stringify(user));
+        
         sessionStorage.setItem("token",user.token);
         sessionStorage.setItem("user",user.id);
         sessionStorage.setItem("nickname",user.nickname);
@@ -49,8 +52,8 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem("apellido",user.apellidos);
         sessionStorage.setItem("documento",user.documento);
         sessionStorage.setItem("fecha",user.fechaNacimiento);
-        this.alertaService.agregarMensaje("Ingreso correcto","info");
         this.router.navigateByUrl("/home");
+
       },
        err => {
         this.alertaService.agregarMensaje("Usuario o contraseña incorrecto","err");

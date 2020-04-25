@@ -7,6 +7,7 @@ import { RegistroComponent } from 'src/app/component/registro/registro.component
 import { ReservaComponent } from 'src/app/component/reserva/reserva.component';
 import { FormComponent } from 'src/app/component/reserva/form/form/form.component';
 import { FilterComponent } from 'src/app/component/reserva/filter/filter/filter.component';
+import { PerfilComponent } from './component/perfil/perfil.component';
 
 
 const routes: Routes = [
@@ -15,8 +16,12 @@ const routes: Routes = [
         { path: 'reserva', component: ReservaComponent, outlet: 'main', children: [
             { path: 'filtro', component: FilterComponent, outlet: 'formSection' }
           ] },
-        { path: 'detail',component: FormComponent },
-    ]},
+        { path: 'detail',component: FormComponent }, 
+        { path: 'perfil', component: PerfilComponent, outlet: 'main', children: [
+          { path: 'filtro', component: FilterComponent, outlet: 'formSection' }
+        ] },
+    ],
+  },
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
   { path: '**', redirectTo: '/home' }
