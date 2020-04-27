@@ -8,6 +8,8 @@ import { ReservaComponent } from 'src/app/component/reserva/reserva.component';
 import { FormComponent } from 'src/app/component/reserva/form/form/form.component';
 import { FilterComponent } from 'src/app/component/reserva/filter/filter/filter.component';
 import { PerfilComponent } from './component/perfil/perfil.component';
+import { ContactoComponent } from './component/contacto/contacto.component';
+
 
 
 const routes: Routes = [
@@ -20,6 +22,9 @@ const routes: Routes = [
         { path: 'perfil', component: PerfilComponent, outlet: 'main', children: [
           { path: 'filtro', component: FilterComponent, outlet: 'formSection' }
         ] },
+        { path: 'contacto', component: ContactoComponent, outlet: 'main', children: [
+          { path: 'filtro', component: FilterComponent, outlet: 'formSection' }
+        ] }
     ],
   },
   { path: 'login', component: LoginComponent },

@@ -3,7 +3,7 @@ import { Usuario } from 'src/app/model/usuario/Usuario';
 import { Time } from '@angular/common';
 import { Router } from '@angular/router';
 import { AlertaService } from 'src/app/service/alerta/alerta.service';
-import { Usuario } from 'src/app/model/usuario/Usuario';
+
 
 @Component({
   selector: 'app-home',

@@ -9,13 +9,13 @@
     <mat-sidenav-container color="primary" class="continer-side">
         <mat-sidenav #drawer mode="side" style="min-width: 250px; background-color: rgba(229, 224, 241, 0.897);" fixedTopGap="56">
             <div class="profileMenu">
-                <img src="/assets/img/user.png"/>
+                <img src="https://hcmacsendo.s3-us-west-2.amazonaws.com/CUSTOMER+SUCCESS/AUTOMATION+PROCESS/PROCESS/Perfil+John.jpg"/>
                 <ul>
                     <li class="name">
-                        {{usuario.nombres}}
+                        {{usuario.nombres}} {{usuario.apellidos}}
                     </li>
                     <li>
-                        {{usuario.id}}
+                        {{usuario.email}}
                     </li>
                     <li>
                         {{usuario.nickname}}
@@ -42,11 +42,11 @@
                     Historial
                 </a>
                 <br>
-                <a mat-list-item routerLink=".">
+                <a mat-list-item [routerLink]="['/home', {outlets: {'main': ['contacto']}}]">
                     <mat-icon color="warn" matPrefix>phone</mat-icon>
                     Contactenos
                 </a>
-                <a mat-list-item (click)="logOut()" >
+                <a mat-list-item (click)="logOut()" >                    
                     <mat-icon color="warn" matPrefix>exit_to_app</mat-icon>
                     Cerrar Sesión
                 </a>

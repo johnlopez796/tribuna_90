@@ -27,6 +27,8 @@ import { FilterComponent } from './component/reserva/filter/filter/filter.compon
 import { MatTableModule } from '@angular/material/table';
 import { DisponibilidadComponent } from './component/reserva/disponibilidad/disponibilidad/disponibilidad.component';
 import { PerfilComponent } from './component/perfil/perfil.component';
+import { ContactoComponent } from './component/contacto/contacto.component';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { PerfilComponent } from './component/perfil/perfil.component';
     FormComponent,
     FilterComponent,
     DisponibilidadComponent,
-    PerfilComponent
+    PerfilComponent,
+    ContactoComponent
   ],
   imports: [
     NgbModule,
