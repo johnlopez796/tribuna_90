@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.alertaService.clear();
+    this.alertaService.clear();    
     this.formLogin = new FormGroup({
       'nickName':new FormControl('', [
         Validators.required,
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
         Validators.required,
         Validators.minLength(4),
       ])
-    });
+    });    
   }
 
 

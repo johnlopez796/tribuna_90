@@ -3,6 +3,8 @@ import { Usuario } from 'src/app/model/usuario/Usuario';
 import { Time } from '@angular/common';
 import { Router } from '@angular/router';
 import { AlertaService } from 'src/app/service/alerta/alerta.service';
+import { HostListener } from '@angular/core';
+
 
 
 @Component({
@@ -12,14 +14,14 @@ import { AlertaService } from 'src/app/service/alerta/alerta.service';
 })
 export class HomeComponent implements OnInit {
 
-  nombre:string;
-  edad:string;
-  nickname:string;
-  token:string;
-  usuario:Usuario;
+  nombre: string;
+  edad: string;
+  nickname: string;
+  token: string;
+  usuario: Usuario;
 
-  constructor( private alertaService:AlertaService,
-    private router:Router) { }
+  constructor(private alertaService: AlertaService,
+    private router: Router) { }
 
   ngOnInit() {
 
@@ -28,16 +30,19 @@ export class HomeComponent implements OnInit {
 
     if (!this.usuario.token) {
       this.router.navigateByUrl("/");
-    }else{
-      this.alertaService.agregarMensaje("Ingreso correcto","info");
+    } else {
+      this.alertaService.agregarMensaje("Ingreso correcto", "info");
     }
   }
 
-  logOut(){
-     sessionStorage.clear; 
-     console.log("Ingreso");
-     this.router.navigateByUrl("/login?returnUrl=%2Fhome");
+  logOut() {
+    sessionStorage.clear;
+    window.sessionStorage.clear();
+    window.localStorage.clear();
+    console.log("Cerrar Sesion");
+    this.router.navigateByUrl("/login?returnUrl=%2Fhome");
 
+    
 
   }
 

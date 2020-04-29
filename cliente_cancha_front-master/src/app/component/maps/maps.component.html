@@ -1,13 +1,11 @@
 <p>maps</p>
-<agm-map [latitude]="initPoint.lat" [longitude]="initPoint.lng" [zoom]="15" style="height: 300px" (mapClick)="buscarCancha($event)">
-    <agm-marker *ngFor="let marker of marcador" [latitude]="marker.lat" [longitude]="marker.lng"></agm-marker>
-    <agm-marker (mouseClick)="mostrarFiltro()"  *ngFor="let marker of marcador" 
-    [latitude]="marker.lat"
-        [longitude]="marker.lng">
+<agm-map [latitude]="initPoint.lat" [longitude]="initPoint.lng" [zoom]="12" style="height: 300px" (mapClick)="buscarCancha($event)">
+    <agm-marker (mouseClick)="mostrarFiltro()"  *ngFor="let marker of establecimientos" [latitude]="marker.location.x" [longitude]="marker.location.y">
         <agm-info-window #window>
             <span></span>
-            <h5>{{marker.name}}</h5>
+            <h5>{{marker.nombre}}</h5>
             <h6>Ubicación: {{marker.ubicacion}}</h6>
+            <h6>Canchas: {{marker.numeroCanchas}}</h6>
             <button class="full-width" type="button" mat-raised-button color="accent"
             (click)="mostrarFiltro(marker.id)">Seleccionar</button>
         </agm-info-window>

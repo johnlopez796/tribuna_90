@@ -4,6 +4,7 @@ import { UserService } from 'src/app/service/user/user.service';
 import { Usuario } from 'src/app/model/usuario/Usuario';
 import { AlertaService } from 'src/app/service/alerta/alerta.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -12,60 +13,66 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class RegistroComponent implements OnInit {
 
-  usuarioObj:Usuario;
+  usuarioObj: Usuario;
   maxNacimiento;
   formUsr: FormGroup;
 
-  constructor(private usuarioService:UserService
-  , private alertaService:AlertaService) { }
+  constructor(private usuarioService: UserService
+    , private alertaService: AlertaService
+    , private router: Router) { }
 
   ngOnInit() {
     this.maxNacimiento = new Date();
-    this.maxNacimiento.setFullYear( this.maxNacimiento.getFullYear() - 14 );
+    this.maxNacimiento.setFullYear(this.maxNacimiento.getFullYear() - 14);
     this.formUsr = new FormGroup({
-      'apellidos':new FormControl('', [
+      'apellidos': new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(50),
+      ]),
+      'documento': new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(10),
+      ]),
+      'email': new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(50),
+        Validators.email,
+      ]),
+      'fechaNacimiento': new FormControl('', [
         Validators.required,
         Validators.minLength(4),
       ]),
-      'clave':new FormControl('', [
+      'usuario': new FormControl('', [
         Validators.required,
         Validators.minLength(4),
+        Validators.maxLength(10),
       ]),
-      'documento':new FormControl('', [
+      'nombres': new FormControl('', [
         Validators.required,
-        Validators.minLength(4),
+        Validators.minLength(2),
+        Validators.maxLength(50),
       ]),
-      'email':new FormControl('', [
-        Validators.required,
-        Validators.minLength(4),
-      ]),
-      'fechaNacimiento':new FormControl('', [
-        Validators.required,
-        Validators.minLength(4),
-      ]),
-      'usuario':new FormControl('', [
-        Validators.required,
-        Validators.minLength(4),
-      ]),
-      'nombres':new FormControl('', [
-        Validators.required,
-        Validators.minLength(4),
-      ]),
-      'tipoDocumento':new FormControl('', [
+      'tipoDocumento': new FormControl('', [
         Validators.required
       ]),
-      'password':new FormControl('', [
+      'password': new FormControl('', [
         Validators.required,
         Validators.minLength(4),
+        Validators.maxLength(10),
       ]),
-      'password2':new FormControl('', [
+      'password2': new FormControl('', [
         Validators.required,
         Validators.minLength(4),
+        Validators.maxLength(10),
       ])
+
     });
   }
 
-  registrar(formData){
+  registrar(formData) {
     this.usuarioObj = new Usuario();
     this.usuarioObj.apellidos = formData.apellidos;
     this.usuarioObj.clave = formData.password;
@@ -76,15 +83,26 @@ export class RegistroComponent implements OnInit {
     this.usuarioObj.nombres = formData.nombres;
     this.usuarioObj.tipoDocumento = formData.tipoDocumento;
 
-     this.usuarioService.registroUsuario(this.usuarioObj).subscribe(
-       user => {
-          this.alertaService.agregarMensaje("Se registro correctamente el usuario","info");
-          this.formUsr.reset({});
-       },
-       error =>{
-          this.alertaService.agregarMensaje("Usuario ya registrado","info");
-       }
-     );
+
+    this.usuarioService.registroUsuario(this.usuarioObj).subscribe(
+      user => {
+        this.alertaService.agregarMensaje("Se registro correctamente el usuario", "info");
+        this.formUsr.reset({});
+        setTimeout(() => {
+          this.router.navigateByUrl("/login?returnUrl=%2Fhome");
+          this.alertaService.agregarMensaje("Se registro correctamente el usuario", "info");
+        }, 3000
+        );
+
+      },
+      error => {
+        this.alertaService.agregarMensaje("El usuario ya se encuentra registrado, porfavor integre ingresar a la plataforma", "info");
+        setTimeout(() => {
+          this.router.navigateByUrl("/login?returnUrl=%2Fhome");          
+        }, 3000
+        );
+      }
+    );
   }
 
   get apellidos() { return this.formUsr.get('apellidos'); }
